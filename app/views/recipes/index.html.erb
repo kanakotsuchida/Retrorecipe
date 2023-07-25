@@ -17,7 +17,7 @@
             <div class="card-image">
               <figure class="image is-4by3">
                 <%= link_to recipe_path(recipe) do %>
-                  <%= image_tag recipe, :recipe_image %>
+                  <%= image_tag recipe, @recipe, :recipe_image %>
                 <% end %>
               </figure>
             </div>

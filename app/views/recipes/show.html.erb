@@ -15,7 +15,7 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
-              <%= image_tag @recipe, :recipe_image %>
+               <%= image_tag @recipe,:recipe_image, class: 'img-fluid',  fallback: "no_image.jpg" %>
             </figure>
           </div>
           <div class="card-content">

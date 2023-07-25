@@ -1,29 +1,75 @@
-<div class="recipe-form ">
-  <h1 class="text-center">レシピを投稿する</h1>
-
-  <%= form_with model: @recipe, local: true do |f| %>
-    
-    <div class="form-group">
-      <label class="text-secondary">料理名</label><br>
-      <%= f.text_field :title, class: "form-control"%>
+<!--エラーメッセージ-->
+<% if @recipe.errors.any? %>
+  <div class="container mt-5">
+    <div class="form">
+      <div class="error-box p-3">
+        <h5 class=text-danger><%= @recipe.errors.count %>件のエラーが発生しました</h5>
+        <ul class="ml-4">
+          <% @recipe.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+  </div>
+<% end %>
 
-    <div class="form-group">
-      <label class="text-secondary">画像</label><br>
-      <%= f.file_field :recipe_image %>
+<div class="container mt-5">
+  <div class="row">
+<div class="item-edit">
+
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <h2>新作メニュー</h2>
+
+      <%= form_with model: @recipe, local:true do |f| %>
+        <div class="form">
+
+          <div class="form-group mb-4">
+            <%= f.label :recipe_image, '完成写真' %><br/>
+            <div class="col-sm-8">
+            <%= f.file_field :recipe_image, accept: "image/*" %>
+          </div>
+          
+          
+          <div class="form-group mb-4">
+            <%= f.label :title, 'メニュー名' %><br/>
+            <%= f.text_field :title, :size => "40x1" %>
+          </div>
+
+          <div class="form-group-4">
+            <%= f.label :ingredient, '材料' %><br>
+            <%= f.text_field :ingredient, id: :ingredient, :size => "40x1" %>
+            <trix-editor input="ingredient"></trix-editor>
+          </div>
+
+          <div class="form-group-4">
+            <%= f.label :body, '作り方' %><br>
+            <%= f.text_field :body, id: :body, :size => "40x5" %>
+          </div>
+
+          <div class="form-group mb-4">
+            <%= f.label :memo, '一口メモ' %><br>
+            <%= f.text_field :memo, id: :memo, :size => "40x5" %>
+            
+          </div>
+
+         
+
+         
+
+        <div class="create-btn">
+          <%= f.submit '保存', class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
-
-    
-
-
-
-    <div class="form-group">
-      <label class="text-secondary">作り方</label><br>
-      <%= f.text_area :body, class: "form-control", id: "recipe-area" %>
-    </div>
-    
-    <div class="actions">
-      <%= f.submit "投稿", class: "btn btn-primary de-btn" %>
-    </div>
-  <% end %>
+  </div>
 </div>
+
+<!--トップに戻るボタン-->
+<span id="back">
+  <a href="#">
+    <i class="fas fa-arrow-circle-up arrow"></i>
+  </a>
+</span>
