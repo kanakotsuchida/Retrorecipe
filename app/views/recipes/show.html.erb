@@ -1,64 +1,63 @@
-<section class="hero is-success">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        レシピ詳細
-      </h1>
+<div class="container mt-5">
+  <%= link_to "Back", recipes_path, class:"btn btn-sm btn-primary"%>
+
+  <div class="row">
+    <div class="recipe-headding mb-3 ml-3">
+      <h1><%= @recipe.name %></h1>
     </div>
   </div>
-</section>
 
-<section class="section">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-7">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-               <%= image_tag @recipe,:recipe_image, class: 'img-fluid',  fallback: "no_image.jpg" %>
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"><%= @recipe.title %></p>
-              </div>
-            </div>
-            <div class="content">
-              <table class="table is-narrow">
-                <tr>
-                  <th>レシピ</th>
-                </tr>
-                <tr>
-                  <td><%= simple_format @recipe.body %></td>
-                </tr>
-              </table>
-              <% if @recipe.user.id == current_user.id %>
-                <%= link_to "編集画面へ", edit_recipe_path(@recipe), class: "button is-success" %>
-              <% end %>
-            </div>
-          </div>
+  <div class="row mb-5">
+    <div class="col-md-5">
+      <%= link_to recipe_path(@recipe.id) do %>
+        <%= attachment_image_tag @recipe,:recipe_image, class: 'img-fluid',  fallback: "no_image.jpg" %>
+      <% end %>
+    </div>
+
+    <div class="col-md-3 my-3 my-md-0">
+      <div class="recipe-ingredients">
+        <h3>材料</h3>
+          <%= sanitize @recipe.ingredient, tags:%w(strong em p br div ul ol li) %>
+      </div>
+    </div>
+
+    
+
+       
+
+        
+
+       
+
+        <div class="memo mb-4">
+          <h4>メモ</h4>
+            <%= sanitize @recipe.memo, tags:%w(strong em p br div ul ol li) %>
+        </div>
+
+        <div class="views">
+          <h4>閲覧数</h4>
+            <%= @recipe.impressionist_count %>
         </div>
       </div>
 
-      <div class="column is-4">
-        <article class="panel is-link">
-          <p class="panel-heading">
-            By <%= @recipe.user.name %>
-          </p>
-          <div class="panel-block">
-            <p class="control">
-              <%= @recipe.user.profile %>
-            </p>
-          </div>
-          <%= link_to user_path(@recipe.user), class: "panel-block" do %>
-            <span class="panel-icon">
-              <i class="fas fa-user" aria-hidden="true"></i>
-            </span>
-            <%= @recipe.user.name %> さんのページへ
-          <% end %>
-        </article>
+      <%= link_to "", edit_recipe_path, class:"fas fa-edit btn btn-lg btn-primary" %></td>
+      <%= link_to "", recipe_path(@recipe),method: :delete, class:"fas fa-trash btn btn-lg btn-primary", "data-confirm" =>"本当に消しますか?" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="method mb-3">
+        <h3>作り方</h3>
+          <%= sanitize @recipe.method, tags:%w(strong em p br div ul ol li) %>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<!--トップに戻るボタン-->
+<span id="back">
+  <a href="#">
+    <i class="fas fa-arrow-circle-up arrow"></i>
+  </a>
+</span>
