@@ -1,3 +1,4 @@
+<!--エラーメッセージ-->
 <% if @recipe.errors.any? %>
   <div class="container mt-5">
     <div class="form">
@@ -21,19 +22,35 @@
       <%= form_with model: @recipe, local:true do |f| %>
         <div class="form">
           <div class="form-group mb-4">
-            <%= f.label :text %><br/>
-            <%= f.text_field :text, class: "form-control" %>
+            <%= f.label :name %><br/>
+            <%= f.text_field :name, class: "form-control" %>
           </div>
 
           <div class="form-group mb-4">
             <%= f.label :recipe_image %><br/>
-            <%= f.attachment_field :recipe_image %>
+            <%= f.file_field :recipe_image %>
           </div>
 
           <div class="form-group mb-4">
             <%= f.label :ingredient %>
             <%= f.hidden_field :ingredient, id: :ingredient, class: "form-control" %>
             <trix-editor input="ingredient"></trix-editor>
+          </div>
+
+          <div class="form-group mb-4">
+            <%= f.label :method %>
+            <%= f.hidden_field :method, id: :method, class: "form-control" %>
+            <trix-editor input="method"></trix-editor>
+          </div>
+
+          <div class="field mb-4">
+            <%= f.label :serve %>
+            <%= f.select :serve, options_for_select((1..10).to_a, selected:@recipe.serve)%>
+          </div>
+
+          <div class="form-group mb-4">
+            <%= f.label :cooking_time %>
+            <%= f.select :cooking_time, Recipe.cooking_times.keys, {prompt: "Select"} %>
           </div>
 
           
@@ -44,7 +61,12 @@
             <trix-editor input="memo", placeholder= "コツや注意書きなど"></trix-editor>
           </div>
 
-         
+          <div class="form-group mb-4">
+            <%= f.label :genre_id %><br/>
+            <%= f.select :genre_id, @genre_list %>
+          </div>
+
+          
 
         <div class="create-btn">
           <%= f.submit '編集保存', class:"btn btn-primary" %>

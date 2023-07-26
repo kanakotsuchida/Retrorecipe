@@ -1,41 +1,49 @@
-<section class="hero is-success">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        レトロ住民一覧
-      </h1>
-    </div>
+<div class="home-visual">
+  <div class="home-visual-content">
+    <p class="home-visual-text">
+       <h2>おかえりなさい！</h2><br/>
+       <%= current_user.name %>さん
+    </p>
   </div>
-</section>
+</div>
 
-<section class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-      <% @users.each do |user| %>
-        <div class="column is-3">
-          <div class="card">
-            <div class="card-content">
-              <div class="card-image">
-                <figure class="image">
-                  <%= link_to user_path(user) do %>
-                   
-                  <% end %>
-                </figure>
-              </div>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <div class="title"><%=link_to user.name, user_path(user) %></div>
-                </div>
-              </div>
-              <div class="content">
-                投稿数：<%= user.recipes.count %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+
+<div class="container mt-5">
+  <!--MENU-->
+  <div class="row">
+    <div class="col-md-4 menu-box">
+      <div class="index-button">
+        <%= link_to "レシピを追加", new_recipe_path, class: "btn-circle-flat" %>
+      </div>
+    </div>
+    
+  
+    <div class="col-md-4 menu-box">
+      <%= link_to "ジャンルで探す", recipes_path, class: "btn-circle-flat" %>
     </div>
   </div>
-</section>
+  
+  <!--閲覧数ランキング-->
+  <div class="row my-5">
+    <div class="col-md-12">
+      <div class="top5 mb-3">
+        <h3>閲覧数 Top 5</h3>
+      </div>
+      
+  <!--お気に入りレシピ一覧-->
+  <div class="row mb-3">
+    <div class="col-md-12">
+        <h3>お気に入りレシピ</h3>
+    </div>
+  </div>
+  
+ 
+<!--トップに戻るボタン-->
+<span id="back">
+  <a href="#">
+    <i class="fas fa-arrow-circle-up arrow"></i>
+  </a>
+</span>
+
+
+

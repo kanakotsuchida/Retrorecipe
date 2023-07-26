@@ -1,32 +1,53 @@
 class RecipesController < ApplicationController
- before_action :authenticate_user!, except: [:index]
   
-  def index
-    @recipes = Recipe.all
-  end
+
+   def index
+    @genres = Genre.all
+   
+    # ↓ジャンル検索
+    if params[:genre_id]
+      @genre = @genres.find(params[:genre_id])
+      @recipes = @genre.recipes.where(user_id: current_user.id).page(params[:page]).per(6)
+    # ↓タグ検索
+    elsif params[:tag_id]
+      @tag = Tag.find(params[:tag_id])
+      @recipes = @tag.recipes.where(user_id: current_user.id).page(params[:page]).per(6)
+      @recipe_tag = @tag.tag_name
+    # ↓すべて
+    else
+      @recipes = current_user.recipes.page(params[:page]).per(6).order(id: "DESC")
+    end
+    @all_recipes_count = @recipes.total_count
+   end
+
   def show
     @recipe = Recipe.find(params[:id])
     redirect_to users_path unless current_user == @recipe.user
-    @recipe_tags = @recipe.tags
-    impressionist(@recipe, nil, unique: [:ip_address])
+    
+  
   end
 
   def new
     @recipe = Recipe.new
+    @genre_list = Genre.pluck('name, id')
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+   
     if @recipe.save
+      
       redirect_to recipe_path(@recipe.id), notice: "レシピを作成しました。"
     else
+      @genre_list = Genre.pluck('name, id')
       render :new
     end
   end
 
   def edit
     @recipe = Recipe.find(params[:id])
+    @genre_list = Genre.pluck('name, id')
     if @recipe.user.id == current_user.id
       render :edit
     else
@@ -36,10 +57,13 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+    @genres = Genre.all
+    tag_list = params[:recipe][:tag_name].split(nil)
     if @recipe.update(recipe_params)
-      @recipe.save
+      @recipe.save_tag(tag_list)
       redirect_to recipe_path(@recipe.id), notice: 'レシピを更新しました。'
     else
+      @genre_list = Genre.pluck('name, id')
       render :edit
     end
   end
@@ -61,7 +85,6 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:title, :recipe_image_id, :ingredient, :memo, )
+    params.require(:recipe).permit(:name, :recipe_image, :ingredient, :method, :cooking_time, :serve, :memo, :genre_id)
   end
- 
 end

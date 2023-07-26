@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_25_112211) do
+ActiveRecord::Schema.define(version: 2023_07_26_141044) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 2023_07_25_112211) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "recipe_comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
@@ -49,14 +55,15 @@ ActiveRecord::Schema.define(version: 2023_07_25_112211) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "body", null: false
+    t.string "name", null: false
     t.string "ingredient", null: false
-    t.text "memo"
+    t.string "method", null: false
+    t.integer "cooking_time", null: false
+    t.integer "serve", null: false
+    t.text "memo", null: false
     t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "recipe_image_id", null: false
+    t.integer "genre_id"
+    t.index ["genre_id"], name: "index_recipes_on_genre_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,4 +83,5 @@ ActiveRecord::Schema.define(version: 2023_07_25_112211) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "recipes", "genres"
 end

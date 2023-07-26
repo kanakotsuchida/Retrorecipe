@@ -1,4 +1,3 @@
-<!--エラーメッセージ-->
 <% if @recipe.errors.any? %>
   <div class="container mt-5">
     <div class="form">
@@ -15,50 +14,60 @@
 <% end %>
 
 <div class="container mt-5">
-  <div class="row">
-<div class="item-edit">
-
-<div class="container mt-5">
   <div class="row mb-3">
     <div class="col-md-12">
-      <h2>新作メニュー</h2>
+      <h3>New Recipe</h3>
 
       <%= form_with model: @recipe, local:true do |f| %>
         <div class="form">
+          <div class="form-group mb-4">
+            <%= f.label :name, 'メニュー名' %><br/>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
 
           <div class="form-group mb-4">
-            <%= f.label :recipe_image, '完成写真' %><br/>
-            <div class="col-sm-8">
+            <%= f.label :recipe_image %><br/>
             <%= f.file_field :recipe_image, accept: "image/*" %>
           </div>
-          
-          
-          <div class="form-group mb-4">
-            <%= f.label :title, 'メニュー名' %><br/>
-            <%= f.text_field :title, :size => "40x1" %>
-          </div>
 
-          <div class="form-group-4">
-            <%= f.label :ingredient, '材料' %><br>
-            <%= f.text_field :ingredient, id: :ingredient, :size => "40x1" %>
+          <div class="form-group mb-4">
+            <%= f.label :ingredient, '材料' %>
+            <%= f.text_area :ingredient, id: :ingredient, class: "form-control" %>
             <trix-editor input="ingredient"></trix-editor>
           </div>
 
-          <div class="form-group-4">
-            <%= f.label :body, '作り方' %><br>
-            <%= f.text_field :body, id: :body, :size => "40x5" %>
+          <div class="form-group mb-4">
+            <%= f.label :method %>
+            <%= f.text_field :method, id: :method, class: "form-control" %>
+            <trix-editor input="method"></trix-editor>
+          </div>
+
+          <div class="field mb-4">
+            <%= f.label :serve %>
+            <%= f.select :serve, options_for_select((1..10).to_a)%>
           </div>
 
           <div class="form-group mb-4">
-            <%= f.label :memo, '一口メモ' %><br>
-            <%= f.text_field :memo, id: :memo, :size => "40x5" %>
-            
+            <%= f.label :cooking_time %>
+            <%= f.select :cooking_time, Recipe.cooking_times.keys, {prompt: "Select"} %>
           </div>
 
-         
+          
+           
+       
 
-         
+          <div class="form-group mb-4">
+            <%= f.label :memo %>
+            <%= f.text_field :memo, id: :memo, class: "form-control" %>
+            <trix-editor input="memo", placeholder= "コツや注意書きなど"></trix-editor>
+          </div>
 
+          <div class="form-group mb-4">
+            <%= f.label :genre_id %><br/>
+             <%= f.select :genre_id, @genre_list, include_blank: "Select" %>
+          </div>
+
+          
         <div class="create-btn">
           <%= f.submit '保存', class: "btn btn-primary" %>
         </div>

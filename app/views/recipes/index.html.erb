@@ -1,45 +1,47 @@
-<section class="hero is-success">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        レシピ一覧
-      </h1>
+<div class="container mt-5">
+  <!--検索フィールド-->
+  <div class="row mb-5">
+    <div class="col-md-6 ml-auto">
+      
     </div>
   </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-      <% @recipes.each do |recipe| %>
-        <div class="column is-4">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <%= link_to recipe_path(recipe) do %>
-                  <%= image_tag recipe, @recipe, :recipe_image %>
-                <% end %>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <%= image_tag recipe.user, :profile_image, fallback: "no_image.jpg", class: "profile_image" %>
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <div class="title"><%=link_to recipe.user.name, user_path(recipe.user) %></div>
+  
+  <!--サイドメニュー-->
+  
+    
+    <!--タイトル-->
+    <div class="col-md-10 mt-3">
+      <div class="title">
+        <% if params[:genre_id] %>
+        	<h3><%= @genre.name %> (<%= @all_recipes_count %>)</h3>
+        <% elsif params[:tag_id] %>
+          <h3><%= @recipe_tag %>(<%= @all_recipes_count %>)</h3>
+        <% else %>
+        	<h3>全レシピ (<%= @all_recipes_count %>)</h3>
+        <% end %>
+      </div>
+      
+      <!--レシピ一覧-->
+      <div class="row">
+        <% @recipes.each do |recipe| %>
+          <div class="col-md-4">
+            <div class="items">
+              <%= link_to recipe_path(recipe.id) do %>
+               
+              <% end %>
+              <div class="mt-3 mb-5 d-flex justify-content-between">
+                <h5><%= link_to recipe.name, recipe_path(recipe.id) %></h5>
+                
+                <!--お気に入り機能-->
+                
                 </div>
               </div>
-
-              <div class="content">
-                <time><%= recipe.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+            
+        <% end %>
+      </div>
     </div>
   </div>
-</section>
+</div>
+
+<!--ページ-->
+<%= paginate @recipes %>
