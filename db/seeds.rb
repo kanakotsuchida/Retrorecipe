@@ -7,13 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Genre.create({ name: "スポンジケーキ"}) if !Genre.where(name: "スポンジケーキ").present?;
-Genre.create({ name: "パウンドケーキ"}) if !Genre.where(name: "パウンドケーキ").present?;
-Genre.create({ name: "クッキー・サブレ"}) if !Genre.where(name: "クッキー・サブレ").present?;
-Genre.create({ name: "パイ・タルト"}) if !Genre.where(name: "パイ・タルト").present?;
-Genre.create({ name: "マフィン"}) if !Genre.where(name: "マフィン").present?;
-Genre.create({ name: "プリン・ゼリー"}) if !Genre.where(name: "プリン・ゼリー").present?;
-Genre.create({ name: "チョコレート"}) if !Genre.where(name: "チョコレート").present?;
-Genre.create({ name: "パン"}) if !Genre.where(name: "パン").present?;
-Genre.create({ name: "和菓子"}) if !Genre.where(name: "和菓子").present?;
+Genre.create({ name: "飲み物"}) if !Genre.where(name: "飲み物").present?;
+Genre.create({ name: "軽食・サイドメニュー"}) if !Genre.where(name: "軽食・サイドメニュー").present?;
+Genre.create({ name: "パスタ"}) if !Genre.where(name: "パスタ").present?;
+Genre.create({ name: "ごはん"}) if !Genre.where(name: "ごはん").present?;
+Genre.create({ name: "デザート"}) if !Genre.where(name: "デザート").present?;
 Genre.create({ name: "その他"}) if !Genre.where(name: "その他").present?;

@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2023_07_26_141044) do
     t.text "memo", null: false
     t.integer "user_id", null: false
     t.integer "genre_id"
+    t.string "recipe_image_id", null: false
     t.index ["genre_id"], name: "index_recipes_on_genre_id"
   end
 

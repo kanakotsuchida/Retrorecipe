@@ -35,9 +35,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
-   
     if @recipe.save
-      
       redirect_to recipe_path(@recipe.id), notice: "レシピを作成しました。"
     else
       @genre_list = Genre.pluck('name, id')
@@ -85,6 +83,6 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :recipe_image, :ingredient, :method, :cooking_time, :serve, :memo, :genre_id)
+    params.require(:recipe).permit(:name, :recipe_image_id, :ingredient, :method, :cooking_time, :serve, :memo, :genre_id)
   end
 end

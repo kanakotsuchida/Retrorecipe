@@ -8,7 +8,7 @@ class Recipe < ApplicationRecord
 
   has_one_attached :recipe_image
   validates :name, presence: true, length: { maximum: 20 }
-  validates :recipe_image, :ingredient, :method, :cooking_time, :serve, :genre_id, presence: true
+  validates :recipe_image_id, :ingredient, :method, :cooking_time, :serve, :genre_id, presence: true
  
 
   enum cooking_time: {
