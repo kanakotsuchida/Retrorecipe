@@ -38,13 +38,13 @@
           </div>
 
           <div class="form-group mb-4">
-            <%= f.label :method %>
-            <%= f.text_field :method, id: :method, class: "form-control" %>
+            <%= f.label :method, '作り方' %>
+            <%= f.text_area :method, id: :method, class: "form-control" %>
             <trix-editor input="method"></trix-editor>
           </div>
 
           <div class="field mb-4">
-            <%= f.label :serve %>
+            <%= f.label :serve, '人数' %>
             <%= f.select :serve, options_for_select((1..10).to_a, selected:@recipe.serve)%>
           </div>
 

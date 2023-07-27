@@ -8,42 +8,33 @@
 </div>
 
 
-<div class="container mt-5">
-  <!--MENU-->
-  <div class="row">
-    <div class="col-md-4 menu-box">
-      <div class="index-button">
-        <%= link_to "レシピを追加", new_recipe_path, class: "btn-circle-flat" %>
-      </div>
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @users.each do |user| %>
+        <div class="profile-container w-75 d-flex mx-auto justify-content-around align-items-center border-bottom py-5">
+   <%= image_tag @user.get_profile_image(100,100), class:"rounded-circle";  %>
+  <h5 class="profile-name display-4"><%= @user.name %></h5>
+  <% if @user.id == current_user.id %>
+    <div class="mt-auto">
+    <p><%= link_to "プロフィール編集", edit_user_path(@user), class:"text-dark" %></p>
     </div>
-    
-  
-    <div class="col-md-4 menu-box">
-      <%= link_to "ジャンルで探す", recipes_path, class: "btn-circle-flat" %>
+  <% end %>
+</div>
+<%= render 'post_images/list', post_images: @profile_images %>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <div class="title"><%=link_to user.name, user_path(user) %></div>
+                </div>
+              </div>
+              <div class="content">
+                投稿数：<%= user.recipes.count %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-  
-  <!--閲覧数ランキング-->
-  <div class="row my-5">
-    <div class="col-md-12">
-      <div class="top5 mb-3">
-        <h3>閲覧数 Top 5</h3>
-      </div>
-      
-  <!--お気に入りレシピ一覧-->
-  <div class="row mb-3">
-    <div class="col-md-12">
-        <h3>お気に入りレシピ</h3>
-    </div>
-  </div>
-  
- 
-<!--トップに戻るボタン-->
-<span id="back">
-  <a href="#">
-    <i class="fas fa-arrow-circle-up arrow"></i>
-  </a>
-</span>
-
-
-
+</section>

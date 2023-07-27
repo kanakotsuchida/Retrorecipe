@@ -56,9 +56,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     @genres = Genre.all
-    tag_list = params[:recipe][:tag_name].split(nil)
     if @recipe.update(recipe_params)
-      @recipe.save_tag(tag_list)
       redirect_to recipe_path(@recipe.id), notice: 'レシピを更新しました。'
     else
       @genre_list = Genre.pluck('name, id')
