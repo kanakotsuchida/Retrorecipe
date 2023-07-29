@@ -23,7 +23,8 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     redirect_to users_path unless current_user == @recipe.user
-    
+    @recipe_tags = @recipe.tags
+    impressionist(@recipe, nil, unique: [:ip_address])
   
   end
 

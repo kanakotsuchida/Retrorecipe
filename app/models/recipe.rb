@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   has_many :recipe_tags, dependent: :destroy
+  has_many :recipe_images_id, dependent: :destroy
   has_many :tags, through: :recipe_tags
 
   has_one_attached :recipe_image
