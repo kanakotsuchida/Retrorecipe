@@ -1,47 +1,45 @@
-<div class="container mt-5">
-  <!--検索フィールド-->
-  <div class="row mb-5">
-    <div class="col-md-6 ml-auto">
-      
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        レシピ一覧
+      </h1>
     </div>
   </div>
-  
-  <!--サイドメニュー-->
-  
-    
-    <!--タイトル-->
-    <div class="col-md-10 mt-3">
-      <div class="title">
-        <% if params[:genre_id] %>
-        	<h3><%= @genre.name %> (<%= @all_recipes_count %>)</h3>
-        <% elsif params[:tag_id] %>
-          <h3><%= @recipe_tag %>(<%= @all_recipes_count %>)</h3>
-        <% else %>
-        	<h3>全レシピ (<%= @all_recipes_count %>)</h3>
-        <% end %>
-      </div>
-      
-      <!--レシピ一覧-->
-      <div class="row">
-        <% @recipes.each do |recipe| %>
-          <div class="col-md-4">
-            <div class="items">
-              <%= link_to recipe_path(recipe.id) do %>
-               
-              <% end %>
-              <div class="mt-3 mb-5 d-flex justify-content-between">
-                <h5><%= link_to recipe.name, recipe_path(recipe.id) %></h5>
-                
-                <!--お気に入り機能-->
-                
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @recipes.each do |recipe| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to recipe_path(recipe) do %>
+                  <h3>全レシピ (<%= @all_recipes_count %>)</h3>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                   
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="title"><%=link_to recipe.user.name, user_path(recipe.user) %></div>
                 </div>
               </div>
-            
-        <% end %>
-      </div>
+
+              <div class="content">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-</div>
-
-<!--ページ-->
-<%= paginate @recipes %>
+</section>

@@ -1,40 +1,28 @@
-<div class="home-visual">
-  <div class="home-visual-content">
-    <p class="home-visual-text">
-       <h2>おかえりなさい！</h2><br/>
-    </p>
-  </div>
-</div>
-
-
-<section class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-      <% @users.each do |user| %>
-        <div class="column is-3">
-          <div class="card">
-            <div class="card-content">
-              <div class="card-image">
-                <figure class="image">
-                  <%= link_to user_path(user) do %>
-                    <%= image_tag @user.get_profile_image(100,100) %>
-                  <% end %>
-                </figure>
-              </div>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <div class="title"><%=link_to user.name, user_path(user) %></div>
-                </div>
-              </div>
-              <div class="content">
-                投稿数：<%= user.recipes.count %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+<div class="container pt-4 px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+       
+    </div>
+    
+    <div class="col-md-8 offset-md-1">
+        <h2>Users</h2>
+        
+        <table class="table mb-5">
+            <tbody>
+                <tr>
+                    <td>Image</td>
+                    <td>Name</td>
+                    <td></td>
+                </tr>
+                <% @users.each do |user| %>
+                  <tr>
+                    
+                    <td><%= user.name %></td>
+                    <td><%= link_to "Show", user_path(user.id) %></td>
+                  </tr>
+                <% end %>
+            </tbody>
+        </table>    
     </div>
   </div>
-</section>
+</div>

@@ -5,8 +5,8 @@
     </div>
   </div>
 
-  <div class="row mt-4">
-    <div class="col-md-5">
+  <div class="row mt-2">
+    <div class="col-md-8">
       <h4>プロフィール</h4>
       <table class="table table-bordered">
         <thead>
@@ -18,6 +18,11 @@
             <th>Email</th>
             <td><%= current_user.email %></td>
           </tr>
+          
+           <tr>
+             <th>プロフィール</th>
+             <th><%= @user.profile_id %></th>
+            </tr>
         </thead>
       </table>
     
@@ -41,53 +46,7 @@
     
 
 
-    <section class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-      <% @user.recipes.each do |recipe| %>
-        <div class="column is-4">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <%= link_to recipe_path(recipe) do %>
-                  <%= image_tag @user.get_profile_image(100,100) %>
-                <% end %>
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <%= link_to recipe_path(recipe), class: "panel-block" do %>
-                    <span class="panel-icon">
-                      <i class="fas fa-book" aria-hidden="true"></i>
-                    </span>
-                    このレシピを見る
-                  <% end %>
-                  <% if @user.id == current_user.id %>
-                    <%= link_to edit_recipe_path(recipe), class: "panel-block" do %>
-                      <span class="panel-icon">
-                        <i class="fas fa-edit"></i>
-                      </span>
-                      このレシピを編集する
-                    <% end %>
-                    <%= link_to recipe_path(recipe), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
-                      <span class="panel-icon">
-                        <i class="fas fa-trash"></i>
-                      </span>
-                      このレシピを削除する
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</section>
-
+    
 
 <div class="container mt-5">
    <div class="row">

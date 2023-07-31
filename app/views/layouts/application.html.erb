@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <div class="text-success">
     <title>レトロレシピ</title>
-     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+     
     
     
    
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </div>
   </head>
 
   
-     <body>
-    <% if flash[:notice] %>
+  <body>
+   <% if flash[:notice] %>
       <div class="notification is-info">
         <p class="notice"><%= notice %></p>
       </div>
@@ -29,7 +29,7 @@
     <nav class="navbar is-warning">
       <div class="navbar-brand">
         <%= link_to root_path, class: "navbar-item" do %>
-          <h1 class="title is-4" style="font-family: cursive;">レトロレシピ</h1>
+        <h1 class="title is-4" style="font-family: cursive;">レトロレシピ</h1>
         <% end %>
         <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
           <span></span>
@@ -51,13 +51,14 @@
             <div class="navbar-item">
               <div class="field is-grouped">
                 <p class="control">
-                  <%= link_to "レシピグラマー一覧", users_path, class: " button is-warning is-light" %>
+                  <%= link_to "レトロな住民一覧", users_path, class: " button is-warning is-light" %>
                 </p>
                 <p class="control">
                   <%= link_to "マイページ", user_path(current_user), class: "button is-warning is-light" %>
                 </p>
                 <p class="control">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
+                  <%= csrf_meta_tags %>
                 </p>
               </div>
             </div>
@@ -69,7 +70,7 @@
             <%= link_to "レシピ一覧", recipes_path, class: "navbar-item button is-warning is-light" %>
           </div>
           <div class="navbar-item">
-            <%= link_to "レシピグラマー一覧", users_path, class: "navbar-item button is-warning is-light" %>
+            <%= link_to "レトロな住民一覧", users_path, class: "navbar-item button is-warning is-light" %>
           </div>
           <div class="navbar-end">
             <div class="navbar-item">

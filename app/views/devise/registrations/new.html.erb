@@ -13,7 +13,7 @@
     <div class="columns is-centered">
       <div class="column is-5">
         <script src="https://kit.fontawesome.com/2a6ca15603.js" crossorigin="anonymous"></script>
-        <%= form_with model: @user, url: user_registration_path do |f| %>
+         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
 

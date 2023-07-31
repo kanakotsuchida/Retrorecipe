@@ -3,13 +3,13 @@ class Recipe < ApplicationRecord
 
   belongs_to :user
   belongs_to :genre
-  has_many :recipe_tags, dependent: :destroy
-  has_many :recipe_images_id, dependent: :destroy
-  has_many :tags, through: :recipe_tags
+  has_many :recipes_tags, dependent: :destroy
+  has_many :recipes_images, dependent: :destroy
+  has_many :recipe_tags, through: :recipe_tags
 
-  has_one_attached :recipe_image
+  has_one_attached :resipe_image
   validates :name, presence: true, length: { maximum: 20 }
-  validates :recipe_image_id, :ingredient, :method, :cooking_time, :serve, :genre_id, presence: true
+  validates :ingredient, :method, :cooking_time, :serve, :genre_id, presence: true
  
 
   enum cooking_time: {
@@ -43,5 +43,13 @@ class Recipe < ApplicationRecord
     end
   end
   
+  
+   def get_image
+    unless recipe_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    image
+   end
 end
 

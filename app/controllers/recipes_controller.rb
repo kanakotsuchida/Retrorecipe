@@ -23,9 +23,8 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     redirect_to users_path unless current_user == @recipe.user
-    @recipe_tags = @recipe.tags
-    impressionist(@recipe, nil, unique: [:ip_address])
-  
+    @recipe_tags = @recipe.name
+    
   end
 
   def new
@@ -82,6 +81,6 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :recipe_image_id, :ingredient, :method, :cooking_time, :serve, :memo, :genre_id)
+    params.require(:recipe).permit(:name,:recipe_image, :ingredient, :method, :cooking_time, :serve, :memo, :genre_id, :recipes_tags)
   end
 end

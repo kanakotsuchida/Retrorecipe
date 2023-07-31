@@ -7,11 +7,12 @@ class User < ApplicationRecord
  validates :name, presence: true
  
   has_many :recipes, dependent: :destroy
-  has_many :profile_images_id, dependent: :destroy
+  has_many :profile_images, dependent: :destroy
   has_many :recipe_comments, dependent: :destroy
-  has_many :profiles, dependent: :destroy
+  has_many :profiles_id, dependent: :destroy
   has_one_attached :profile_image
   belongs_to :user, optional: true
+ 
  
   def get_profile_image(width,height)
     unless profile_image.attached?
