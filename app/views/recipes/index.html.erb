@@ -8,6 +8,8 @@
   </div>
 </section>
 
+
+
 <section class="section">
   <div class="container">
     <div class="columns is-multiline">
@@ -21,11 +23,13 @@
                 <% end %>
               </figure>
             </div>
+             <div class="column is-4">
+          
             <div class="card-content">
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                   
+                    <%= image_tag recipe.get_image, size: '80x80' %>
                   </figure>
                 </div>
                 <div class="media-content">

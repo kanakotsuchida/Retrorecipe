@@ -11,22 +11,26 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>名前</th>
-            <td><%= current_user.name %></td>
+            <th>プロフィール画面</th>
+            <td><%= image_tag @user.get_profile_image(100,100) %></td>
           </tr>
           <tr>
+            <th>名前</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <% if @user.id == current_user.id %>
             <th>Email</th>
-            <td><%= current_user.email %></td>
+            <td><%= @user.email %></td>
           </tr>
           
            <tr>
              <th>プロフィール</th>
              <th><%= @user.profile_id %></th>
             </tr>
+            <% end %>
         </thead>
       </table>
-    
-    
     
     
       <h4>データ</h4>
@@ -46,6 +50,9 @@
     
 
 
+    
+    
+    
     
 
 <div class="container mt-5">

@@ -15,13 +15,13 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
-            <%= image_tag @recipe.get_recipe_image, size: '100x100' %>
+            <%= image_tag @recipe.get_image, size: '700x500' %>
             </figure>
           </div>
           <div class="card-content">
             <div class="media">
               <div class="media-content">
-                <p class="title is-4"><%= @recipe.title %></p>
+                <p class="title is-4"><%= @recipe.name %></p>
               </div>
             </div>
             <div class="content">
@@ -30,8 +30,20 @@
                   <th>レシピ</th>
                 </tr>
                 <tr>
-                  <td><%= simple_format @recipe.body %></td>
+                  <td><%= simple_format @recipe.ingredient%></td>
                 </tr>
+                <tr>
+                  <th>作り方</th>
+                </tr>
+                <tr>
+                  <td><%= simple_format @recipe.method %></td>
+                </tr>
+                <tr>
+                 </tr>
+                <tr>
+                  <td><%= simple_format @recipe.memo %></td>
+                </tr>
+                
               </table>
               <% if @recipe.user.id == current_user.id %>
                 <%= link_to "編集画面へ", edit_recipe_path(@recipe), class: "button is-success" %>
@@ -44,11 +56,11 @@
       <div class="column is-4">
         <article class="panel is-link">
           <p class="panel-heading">
-            By <%= @recipe.user.username %>
+            By <%= @recipe.user.name %>
           </p>
           <div class="panel-block">
             <p class="control">
-              <%= @recipe.user.profile %>
+              <%= @recipe.user.profile_id %>
             </p>
           </div>
           <%= link_to user_path(@recipe.user), class: "panel-block" do %>
