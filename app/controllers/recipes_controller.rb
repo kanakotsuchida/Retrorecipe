@@ -24,6 +24,8 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     redirect_to users_path unless current_user == @recipe.user
     @recipe_tags = @recipe.name
+    @comment = Comment.new #追記
+    @comments = @recipe.comments.order(created_at: :desc) #追記
     
   end
 

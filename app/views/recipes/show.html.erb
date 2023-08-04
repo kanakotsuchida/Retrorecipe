@@ -24,6 +24,19 @@
                 <p class="title is-4"><%= @recipe.name %></p>
               </div>
             </div>
+  <% if @recipe.favorited?(current_user) %>
+    <%# 一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ %>
+    <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
+        <span style="color:red;">❤︎</span>
+    <% end %>
+<% else %>
+    <%# 一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ %>
+    <%= link_to recipe_favorites_path(@recipe.id), method: :recipe do %>
+        <span>❤︎</span>
+    <% end %>
+<% end %>
+
+            
             <div class="content">
               <table class="table is-narrow">
                 <tr>
@@ -52,6 +65,25 @@
           </div>
         </div>
       </div>
+
+
+ 
+
+      <div class="show-comment">
+    <div class="recipe-comments text-center">コメント一覧</div>
+    <div id="comments">
+      <% @comments.each do |comment| %>
+        <div class="comment"><%= comment.text %></div>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= form_with model: [@recipe, @comment],local: true do |f| %>
+        <label class="text-secondary">コメントする</label><br>
+        <%= f.text_field :text, class: "comment-form" %>
+        <%= f.submit '送信', class: "btn btn-primary btn-sm" %>
+      <% end %>
+    </div>
+  </div>
 
       <div class="column is-4">
         <article class="panel is-link">

@@ -39,6 +39,7 @@
           <tr>
             <th>総レシピ数</th>
             <td><%= @all_recipes_count%></td>
+            
           </tr>
           <tr>
             <th>お気に入りレシピ数</th>
@@ -47,14 +48,25 @@
         </thead>
       </table>
     </div>
-    
-
-
-    
-    
-    
-    
-
+ 
+<th>Follows</th>
+      <td>
+        <%= link_to follower_user_path(@user) do %>
+          <h6><%= @user.followers.count %></h6>
+        <% end %> 
+      </td>
+      </tr>
+      <tr>  
+        <th>Followers</th>
+        <td>  
+          <%= link_to followers_user_path(@user) do %>
+            <h6><%= @user.followeds.count %></h6>
+          <% end %>
+        </td>
+      </tr> 
+      <tr>
+      
+ 
 <div class="container mt-5">
    <div class="row">
     <div class="col-md-12">
@@ -63,4 +75,6 @@
     <% end %>
    </div>
   </div>
+
+</div>
 </div>
