@@ -10,38 +10,43 @@
 
 
 
-<section class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-      <% @recipes.each do |recipe| %>
-        <div class="column is-4">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <%= link_to recipe_path(recipe) do %>
-                  <h3>全レシピ (<%= @all_recipes_count %>)</h3>
-                <% end %>
-              </figure>
-            </div>
-             <div class="column is-4">
-          
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <%= image_tag recipe.get_image, size: '80x80' %>
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <div class="title"><%=link_to recipe.user.name, user_path(recipe.user) %></div>
-                </div>
-              </div>
+ <div class="container">
+    <div class="row">
+      <div class="col-2 mx-auto">
+        <table class="table table-bordered mt-4">
+          <thead class="table-area">
+            <tr>
+              <th class="text-center">ジャンル検索</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @genres.each do |genre| %>
+            <tr>
+              <td>
+                <%= link_to genre.name, recipes_path(genre_id: genre.id) %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-              
+      <div class="col-9">
+        <h3><strong>レシピ一覧</strong><span></span></h3>
+        <div class="row">
+          <% @recipes.each do |recipe| %>
+            <div class="col-3">
+              <%= link_to recipe_path(recipe.id) do %>
+                <%= image_tag recipe.get_image, size: '200x200' %><br>
+                <%= recipe.name %><br>
+              <% end %>
+            
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+        <div class="row justify-content-center mt-5">
+          
+        </div>
+      </div>
     </div>
   </div>
-</section>

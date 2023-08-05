@@ -11,29 +11,34 @@
   
   
   <body>
+    
+<div class="container">
+    <div class="row">
+        <div class="mx-auto">
+ <div class="card bg-dark text-black" style="width: 1100px; height: 500; ">
+  <img src="/assets/retro_recipe2.jpg" class="card-img" alt="icon image">
+  <div class="card-img-overlay d-flex">
+    <div class="m-auto">
+      <h2 class="card-title">ようこそ<span>レトロレシピへ！</span></h2>
+      <p class="text-cemter">
+        
+      <h5>このサイトは、レトロ専門のレシピ集となっております！<br>
+          レトロが好きな方、料理が好きな方、サイトを一目見て興味を持ってくれた方など<br>
+          沢山のお客様のご来店お待ちしております。
+        </h5>
+      </p>
+      
+    </div>
+  </div>
+</div>
+    
+    
+  <div class="container">
+    <div class="row">
+       <div class="col">
     <div class="text-center">
        <h1>今日もステキなレシピを作りましょう！</h1>
    </div>
-
-
-  <div class="container mt-5 ">
-  <div class="row">
-    <div class="col-md-2">
-    
-    </div>
-    <div class="col-md-10 backimage-text">
-       <div class="text-center">ようこそレトロレシピへ！<br>
-          
-          このサイトは、レトロ専門のレシピ集となっております！<br>
-          レトロが好きな方、料理が好きな方、サイトを一目見て興味を持ってくれた方など<br>
-          沢山のお客様のご来店お待ちしております。
-        </div>
-      </div>
-     </div>
-
- <div class="container mt-5 ">
-  <div class="row">
-    
  
 <div class="container text-center">
   <div class="row">
@@ -43,7 +48,12 @@
 <div class="card" style="width: 18rem;">
   <img src="/assets/bigcoffee.jpg" class="card-img-top" alt="">
   <div class="card-body">
-    <p class="card-text">あとで入力</p>
+    <p class="card-text">
+      休憩も大切です！<br>
+      お気に入りのカップで<br>
+      特別なコーヒーを<br>
+      入れてみませんか？
+    </p>
   </div>
 </div>
     </div>
@@ -53,7 +63,11 @@
       <div class="card" style="width: 18rem;">
   <img src="/assets/melonsoda2.jpg" class="card-img-top" alt="...">
   <div class="card-body">
-    <p class="card-text">あとで入力</p>
+    <p class="card-text">
+      カラフルで爽やかな<br>
+      クリームソーダは<br>
+      いかがですか？
+    </p>
   </div>
 </div>
     </div>
@@ -63,25 +77,24 @@
       <div class="card" style="width: 18rem;">
   <img src="/assets/alamode3.jpg" class="card-img-top" alt="...">
   <div class="card-body">
-    <p class="card-text">あとで入力</p>
-  </div>
-</div>
+    <p class="card-text">
+      "自分"の好きを詰め込んだ<br>
+      アレンジ"レトロレシピ"を<br>
+      作っちゃおう！
+      </p>
+       </div>
+      </div>
     </div>
+   </div>
   </div>
-</div>
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-   
-  </body>
+ </body>
 </html>
 
 
 
-     
-     <div class="columns is-centered">
-        <div class="column is-5">
+   
+        <div class="columns is-centered">
+          <div class="column is-5">
           <br>
           <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-fullwidth" %>
           <br>
@@ -97,3 +110,4 @@
     </div>
   </div>
 </div>
+</html>

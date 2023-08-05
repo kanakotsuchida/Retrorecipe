@@ -6,8 +6,9 @@ class UsersController < ApplicationController
  end
   def show
     @user = User.find(params[:id])
-    @followed_users = @user.followed_users
+    @following_users = @user.following_users
     @follower_users = @user.follower_users
+    
   end
   def edit
     @user = User.find(params[:id])
@@ -26,26 +27,28 @@ class UsersController < ApplicationController
 
 def favorites
   @user = User.find(params[:id])
-  favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-  @favorite_posts = Post.find(favorites)
+  favorites = Favorite.where(user_id: @user.id).pluck(:recipe_id)
+  @favorite_recipes = Recipe.find(favorites)
 end
 
  
- 
- def followed
-   user = User.find(params[:id])
-   @users = user.followed_users  #フォロー
- end
-
- def followers
-   user = User.find(params[:id])
-   @user = user.follower_users  #フォロワー
- end
+ # フォロー一覧
+def follows
+  user = User.find(params[:id])
+  @users = user.following_users
 end
+
+# フォロワー一覧
+def followers
+  user = User.find(params[:id])
+  @user = user.follower_users
+end
+
+ 
 
   private
   def user_params
     params.require(:user).permit(:name, :email, :profile_id, :profile_image)
   end
-  
+end 
 

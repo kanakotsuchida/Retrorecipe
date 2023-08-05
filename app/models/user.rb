@@ -36,6 +36,7 @@ class User < ApplicationRecord
    
   has_many :followers, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  
   has_many :following_users, through: :followers, source: :followed
   has_many :follower_users, through: :followeds, source: :follower
 
@@ -45,14 +46,11 @@ def follow(user_id)
   followers.create(followed_id: user_id)
 end
 
-# フォロー一覧
-def followed
-  user = User.find(params[:id])
-  @users = user.following_users
+# フォローしたときの処理
+def follow(user_id)
+  relationships.create(followed_id: user_id)
 end
-
-# フォロワー一覧
-def followers
-  user = User.find(params[:id])
-  @user = user.follower_users
+# フォローを外すときの処理
+def unfollow(user_id)
+  relationships.find_by(followed_id: user_id).destroy
 end
