@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+   before_action :authenticate_user!, except: [:index]
  def index
     @users = User.all
-    
  end
   def show
     @user = User.find(params[:id])
-    @following_users = @user.following_users
-    @follower_users = @user.follower_users
+    
     
   end
   def edit
@@ -31,18 +29,15 @@ def favorites
   @favorite_recipes = Recipe.find(favorites)
 end
 
- 
- # フォロー一覧
-def follows
-  user = User.find(params[:id])
-  @users = user.following_users
-end
+  def followings
+    user = User.find(params[:id])
+    @users = user.followings
+  end
 
-# フォロワー一覧
-def followers
-  user = User.find(params[:id])
-  @user = user.follower_users
-end
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
+  end
 
  
 
@@ -51,4 +46,3 @@ end
     params.require(:user).permit(:name, :email, :profile_id, :profile_image)
   end
 end 
-

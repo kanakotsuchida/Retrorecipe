@@ -3,10 +3,9 @@ Rails.application.routes.draw do
   root 'homes#index'
   
   resources :users, only: [:index, :show, :edit, :update] do
-     member do
-      get :follower, :followed
-    end
-      resource :relationships, only: [:create, :destroy]
+   resource :relationships, only: [:create, :destroy]
+  get :followings, on: :member
+  get :followers, on: :member
   end
  
   
