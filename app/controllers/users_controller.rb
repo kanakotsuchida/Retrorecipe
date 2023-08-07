@@ -2,10 +2,10 @@ class UsersController < ApplicationController
    before_action :authenticate_user!, except: [:index]
  def index
     @users = User.all
+    
  end
   def show
     @user = User.find(params[:id])
-    
     
   end
   def edit
@@ -29,10 +29,11 @@ def favorites
   @favorite_recipes = Recipe.find(favorites)
 end
 
-  def followings
+ def followings
     user = User.find(params[:id])
     @users = user.followings
-  end
+ end
+
 
   def followers
     user = User.find(params[:id])

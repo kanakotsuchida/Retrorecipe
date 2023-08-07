@@ -15,11 +15,10 @@
 
 
 
-<div class="container mt-6">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-md-12">
-      <h3>New Recipe</h3>
-      <div class="row">
+    <div class="item-title col-8">
+      <h3 class="item-title col-8">新作メニュー</h3>
        <%= form_with model: @recipe, :url => recipes_path, local:true do |f| %>
         <div class="form-group row">
             <%= f.label :name, 'メニュー名' %><br/>
@@ -67,14 +66,6 @@
           </div>
 
          
-          
-          <div class="form-group mb-4">
-            <%= f.label :tag_name, 'タグ' %><br/>
-            <%= f.text_field :tag_name, class: "form-control", placeholder: "(タグを複数つけるには半角スペースで区切ってください)" %>
-          </div>
-        </div>
-
-          
         <div class="create-btn">
           <%= f.submit '投稿する', class: "btn btn-primary" %>
         </div>
