@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
     # ↓ジャンル検索
     if params[:genre_id]
       @genre = @genres.find(params[:genre_id])
-      @recipes = @genre.recipes.where(user_id: current_user.id).page(params[:page]).per(5)
+      @recipes = @genre.recipes.where(@genre_id).page(params[:page])
     # ↓タグ検索
     elsif params[:tag_id]
       @tag = Tag.find(params[:tag_id])
