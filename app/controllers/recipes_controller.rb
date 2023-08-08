@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   def index
+    @recipes = Recipe.all.order(id: "DESC")
+    
     @genres = Genre.all
     #@tag_list = Tag.all
     # ↓ジャンル検索
@@ -13,15 +15,15 @@ class RecipesController < ApplicationController
       #@recipes = @tag.recipes.where(user_id: current_user.id).page(params[:page]).per(5)
       @recipe_tag = @tag.tag_name
     # ↓すべて
-    else
+    #else
       @recipes = current_user.recipes.page(params[:page]).per(5).order(id: "DESC")
     end
-    @all_recipes_count = @recipes.total_count
+    #@all_recipes_count = @recipes.total_count
   end
 
   def show
     @recipe = Recipe.find(params[:id])
-    redirect_to users_path unless current_user == @recipe.user
+    #redirect_to users_path unless current_user == @recipe.user
     @comment = Comment.new #追記
     @comments = @recipe.comments.order(created_at: :desc) #追記
     
