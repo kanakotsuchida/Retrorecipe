@@ -41,19 +41,19 @@
             <th>名前</th>
             <td><%= @user.name %></td>
          
-          
-           
-       
+        <tr>
+             <th>プロフィール</th>
+             <th><%= @user.profile_id %></th>
+            </tr>
+            
           <tr>
             <% if @user.id == current_user.id %>
             <th>Email</th>
             <td><%= @user.email %></td>
+          
           </tr>
           
-           <tr>
-             <th>プロフィール</th>
-             <th><%= @user.profile_id %></th>
-            </tr>
+          
             <% end %>
         </thead>
       </table>
