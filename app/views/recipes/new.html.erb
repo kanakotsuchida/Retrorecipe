@@ -1,17 +1,4 @@
-<% if @recipe.errors.any? %>
-  <div class="container mt-5">
-    <div class="form">
-      <div class="error-box p-3">
-        <h5 class=text-danger><%= @recipe.errors.count %>件のエラーが発生しました</h5>
-        <ul class="ml-4">
-          <% @recipe.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-<% end %>
+
 
 
 
@@ -27,7 +14,7 @@
         
           <div class="field mb-4">
             <%= f.label :serve, '分量' %>
-            <%= f.select :serve, options_for_select((1..10).to_a)%>
+            <%= f.select :serve, options_for_select((1..10).to_a)%>人前
           </div>
         
          <div class="form-group mb-4">
@@ -38,7 +25,7 @@
        
        　　<div class="form-group mb-4">
             <%= f.label :genre_id, 'メニュージャンル' %><br/>
-             <%= f.select :genre_id, @genre_list, include_blank: "ジャンル" %>
+             <td class="select_field"><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
           </div>
 
           <div class="form-group mb-4">
@@ -48,7 +35,7 @@
 
           <div class="form-group mb-4">
             <%= f.label :ingredient, '材料' %>
-            <%= f.text_area :ingredient, id: :ingredient, class: "text_area" %>
+            <%= f.text_area :ingredient, id: :ingredient, class: "form-control" %>
             <trix-editor input="ingredient"></trix-editor>
           </div>
 

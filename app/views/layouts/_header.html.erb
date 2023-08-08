@@ -1,7 +1,5 @@
-
   <!DOCTYPE html>
 <html>
-  
   <head>
     <title>retrorecipe</title>
     <%= csrf_meta_tags %>
@@ -12,22 +10,19 @@
     <script src="https://kit.fontawesome.com/5667bc939f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-   
   </head>
 
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light">
-        
         <div class="container">
           <a class="navbar-brand" href="/"><%= image_tag "/assets/retro_logo2.jpg", :size => "240x100" %></a>
-          
-          
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
-            
-
+          
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
             <!--ログイン時のヘッダー-->
             <% if user_signed_in? %>
               <li class="nav-item">
@@ -84,6 +79,7 @@
           </div>
         </div>
       </nav>
+    </nav>
     </header>
    
     </div>

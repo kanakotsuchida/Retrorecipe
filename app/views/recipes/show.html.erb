@@ -29,12 +29,12 @@
   <% if @recipe.favorited?(current_user) %>
     <%# 一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ %>
     <%= link_to recipe_favorites_path(@recipe.id), method: :delete do %>
-        <span style="color:red;">❤︎</span>
+         <span style="color:red;">♥</span><%= @recipe.favorites.count %> いいね
     <% end %>
 <% else %>
     <%# 一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ %>
     <%= link_to recipe_favorites_path(@recipe.id), method: :recipe do %>
-        <span>❤︎</span>
+        <span>♥</span>
     <% end %>
 <% end %>
 
@@ -78,7 +78,7 @@
 
   
 
-      <div class="show-comment">
+   <div class="show-comment">
     <div class="recipe-comments text-center">コメント一覧</div>
     <div id="comments">
       <% @comments.each do |comment| %>

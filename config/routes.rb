@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'homes#index'
+ 
   
   resources :users, only: [:index, :show, :edit, :update] do
    resource :relationships, only: [:create, :destroy]
@@ -16,7 +17,10 @@ Rails.application.routes.draw do
       get :result
     end
     resource :favorites, only: [:create, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update]
+   
+    end
   end
- end
+
  
 

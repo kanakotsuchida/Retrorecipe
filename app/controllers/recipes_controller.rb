@@ -1,29 +1,27 @@
 class RecipesController < ApplicationController
-  
-
-   def index
+  before_action :authenticate_user!, except: [:index]
+  def index
     @genres = Genre.all
-   
+    #@tag_list = Tag.all
     # ↓ジャンル検索
     if params[:genre_id]
       @genre = @genres.find(params[:genre_id])
-      @recipes = @genre.recipes.where(user_id: current_user.id).page(params[:page]).per(6)
+      @recipes = @genre.recipes.where(user_id: current_user.id).page(params[:page]).per(5)
     # ↓タグ検索
     elsif params[:tag_id]
       @tag = Tag.find(params[:tag_id])
-      @recipes = @tag.recipes.where(user_id: current_user.id).page(params[:page]).per(6)
+      #@recipes = @tag.recipes.where(user_id: current_user.id).page(params[:page]).per(5)
       @recipe_tag = @tag.tag_name
     # ↓すべて
     else
-      @recipes = current_user.recipes.page(params[:page]).per(6).order(id: "DESC")
+      @recipes = current_user.recipes.page(params[:page]).per(5).order(id: "DESC")
     end
     @all_recipes_count = @recipes.total_count
-   end
+  end
 
   def show
     @recipe = Recipe.find(params[:id])
     redirect_to users_path unless current_user == @recipe.user
-    @recipe_tags = @recipe.name
     @comment = Comment.new #追記
     @comments = @recipe.comments.order(created_at: :desc) #追記
     
@@ -37,7 +35,9 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+   
     if @recipe.save
+      
       redirect_to recipe_path(@recipe.id), notice: "レシピを作成しました。"
     else
       @genre_list = Genre.pluck('name, id')
@@ -58,7 +58,9 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     @genres = Genre.all
+    #tag_list = params[:recipe][:tag_name].split(nil)
     if @recipe.update(recipe_params)
+      #@recipe.save_tag(tag_list)
       redirect_to recipe_path(@recipe.id), notice: 'レシピを更新しました。'
     else
       @genre_list = Genre.pluck('name, id')
@@ -71,6 +73,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_path
   end
+   
 
   def favorite
     @recipe = current_user.recipes.find(params[:id])

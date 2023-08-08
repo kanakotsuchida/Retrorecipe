@@ -24,7 +24,7 @@ class User < ApplicationRecord
  has_many :followers, through: :reverse_of_relationships, source: :following
   
   def is_followed_by?(user)
-    reverse_of_relationships.find_by(following_id: user.id).present?
+    reverse_of_relationships.find_by(following_id: user).present?
   end
   
   
