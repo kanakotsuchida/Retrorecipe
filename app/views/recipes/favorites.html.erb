@@ -1,0 +1,28 @@
+
+  <div class="contents_row">
+  
+  <h3>お気に入り一覧</h3>
+  <div class = "recipe"> 
+   <% favorite.each do |favorite| %>
+   <% recipe = Recipe.find(favorite.recipe_id) %>
+      <ul class='recipe-lists'>
+        <li class='list'>
+          <%= link_to recipe_path (recipe.id) do %>
+            <div class='recipe-img-content'>
+              <%= image_tag recipe.image , class:"recipe-img"%>
+            </div>
+         
+            <div class='recipe-info'>
+              <%= recipe.name %>
+              </div>
+            <div class='recipe-outline'>
+              <span><%= recipe.outline %>
+            </div>
+             <%= render partial: 'recipes/recipes', locals:{recipe: recipe} , as: :recipe %>
+          
+        </li>
+          <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

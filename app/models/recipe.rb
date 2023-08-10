@@ -1,6 +1,8 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :genre
+  belongs_to :recipe, counter_cache: :favorites_count
+  
   #has_many :recipes_tags, dependent: :destroy
   #has_many :images, dependent: :destroy
   #has_many :recipe_tags, through: :recipe_tags
@@ -24,6 +26,19 @@ class Recipe < ApplicationRecord
     image
   end
   
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @recipe = Recipe.where("name LIKE?","#{word}")
+    elsif search == "forward_match"
+      @recipe = Recipe.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @recipe = Recipe.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @recipe = Recipe.where("name LIKE?","%#{word}%")
+    else
+      @recipe = Recipe.all
+    end
+  end
   
   def favorited?(user)
    favorites.where(user_id: user.id).exists?

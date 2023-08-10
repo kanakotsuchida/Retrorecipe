@@ -50,11 +50,19 @@
             <% if @user.id == current_user.id %>
             <th>Email</th>
             <td><%= @user.email %></td>
-          
           </tr>
-          
-          
             <% end %>
+          
+          
+         <h2>お気に入りレシピ</h2>  
+            <% if @favorite_list.present? %>
+           <% @favorite_list.each do |recipe| %>
+           
+          <%= recipe.name %>
+          
+        <% end %>
+      <% end %>
+          
         </thead>
       </table>
     </div>

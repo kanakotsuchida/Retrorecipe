@@ -10,4 +10,6 @@ class FavoritesController < ApplicationController
   @recipe_favorite.destroy
   redirect_to recipe_path(params[:recipe_id]) 
   end
+  
+  
 end
