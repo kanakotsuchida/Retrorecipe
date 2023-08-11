@@ -54,15 +54,8 @@
             <% end %>
           
           
-         <h2>お気に入りレシピ</h2>  
-            <% if @favorite_list.present? %>
-           <% @favorite_list.each do |recipe| %>
-           
-          <%= recipe.name %>
-          
-        <% end %>
-      <% end %>
-          
+         
+          <%= link_to "いいねした投稿",  favorites_user_path(@user) %>
         </thead>
       </table>
     </div>

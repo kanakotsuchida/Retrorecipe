@@ -7,7 +7,10 @@ Rails.application.routes.draw do
    resource :relationships, only: [:create, :destroy]
   get :followings, on: :member
   get :followers, on: :member
-  get :favorites, on: :collection 
+ # get :favorites, on: :collection 
+  member do  ###
+      get :favorites
+    end
   
  end
  
@@ -17,8 +20,10 @@ Rails.application.routes.draw do
     collection do
       get :search
       get :result
+       
     end
     resource :favorites, only: [:create, :destroy]
+    
     resources :genres, only: [:index, :create, :edit, :update]
     end
    end 

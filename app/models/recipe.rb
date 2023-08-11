@@ -8,6 +8,7 @@ class Recipe < ApplicationRecord
   #has_many :recipe_tags, through: :recipe_tags
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorites_users, through: :favorites, source: :user
 
   has_one_attached :image
   validates :name, presence: true, length: { maximum: 20 }

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  
  def index
     @users = User.all
     
@@ -26,6 +27,13 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+ 
+ def favorites
+    @user = User.find(params[:id])
+    favorites= Favorite.where(user_id: @user.id).pluck(:recipe_id)
+    @favorite_recipes = Recipe.find(favorites)
+ end
 
  def followings
     user = User.find(params[:id])

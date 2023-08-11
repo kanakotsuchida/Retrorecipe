@@ -4,14 +4,24 @@
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
     <tbody>
-      <% @users.each do |user| %>
+        <h3><strong>ユーザー一覧</strong><span></span></h3>
         <tr>
-          <td><%= user.name %></td>
-        </tr>
+          <% @users.each do |user| %>
+            <div class="col-3">
+            <td>
+              <%= link_to user_path(user.id) do %>
+                <%= user.name %><br>
+                </td>
+              </tr>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </tbody>
+     </div>
+   </tbody>
   <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがrecipeの時) -->
    <div class="col-9">
         <h3><strong>レシピ一覧</strong><span></span></h3>
         <div class="row">
