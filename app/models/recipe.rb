@@ -1,13 +1,14 @@
 class Recipe < ApplicationRecord
   belongs_to :user
   belongs_to :genre
-  belongs_to :recipe, counter_cache: :favorites_count
+  belongs_to :recipe, optional: true, counter_cache: :favorites_count
   
   #has_many :recipes_tags, dependent: :destroy
   #has_many :images, dependent: :destroy
   #has_many :recipe_tags, through: :recipe_tags
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+ 
   has_many :favorites_users, through: :favorites, source: :user
 
   has_one_attached :image
