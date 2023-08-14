@@ -1,6 +1,5 @@
 
   <div class="contents_row">
-  
   <h3>お気に入り一覧</h3>
   <div class = "recipe"> 
    <% favorite.each do |favorite| %>
@@ -19,9 +18,8 @@
               <span><%= recipe.outline %>
             </div>
              <%= render partial: 'recipes/recipes', locals:{recipe: recipe} , as: :recipe %>
-          
-        </li>
-          <% end %>
+           </li>
+         <% end %>
       </ul>
     <% end %>
   </div>
