@@ -13,26 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-@import "bootstrap";
-@import "bootstrap-sprockets";
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
-
-
-
-@font-face {
-  font-family: 'Maromin_Regular_Nomodification';
-  src: url('assets/fonts/Maromin_Regular_Nomodification.otf') format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-.title {
-  font-family: "Maromin_Regular_Nomodification";
-}
-
-
-body {
-  background-image: image-url("hoge.jpg");
-}
