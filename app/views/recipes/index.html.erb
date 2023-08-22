@@ -38,6 +38,7 @@
             <div class="col-3">
               <%= link_to recipe_path(recipe.id) do %>
                 <%= image_tag recipe.get_image, size: '200x200' %><br>
+                
                 <%= recipe.name %><br>
               <% end %>
             </div>

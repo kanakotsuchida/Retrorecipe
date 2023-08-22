@@ -8,9 +8,9 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
       t.integer :serve
       t.text :memo
       t.integer :user_id, null: false
-      t.references :genre, foreign_key: true
-
-
+      t.integer :genre_id, null: false
+      
+      t.timestamps
       
     end
   end
