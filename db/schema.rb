@@ -75,14 +75,14 @@ ActiveRecord::Schema.define(version: 2023_08_04_093038) do
   create_table "recipes", force: :cascade do |t|
     t.string "name", null: false
     t.string "ingredient", null: false
-    t.string "method", null: false
+    t.text "method", null: false
     t.integer "cooking_time"
     t.integer "serve"
     t.text "memo"
     t.integer "user_id", null: false
-    t.integer "genre_id"
-    t.integer "impressions_count"
-    t.index ["genre_id"], name: "index_recipes_on_genre_id"
+    t.integer "genre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -120,5 +120,4 @@ ActiveRecord::Schema.define(version: 2023_08_04_093038) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "recipes"
   add_foreign_key "favorites", "users"
-  add_foreign_key "recipes", "genres"
 end
